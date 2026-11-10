@@ -1,80 +1,51 @@
 (() => {
   const PHONE = "556195068117";
-  const ADDRESS = "QS 429, Conjunto A, Lote 03, Samambaia Norte, Brasília DF, CEP 72329-521";
+  const ADDRESS = "QS 429, Conjunto A, Lote 03, Samambaia Norte, Brasília DF";
+  const VISIT = "marcar uma visita para conhecer a academia";
+  const AULAS = "saber quais aulas coletivas rodam nesta unidade";
+  const VISIT_WA = "Olá! Gostaria de agendar uma visita para conhecer a Majori Fit. Quais horários estão disponíveis?";
 
   const toastEl = document.getElementById("toast");
-  const waIds = ["waTop", "waHero", "waCta", "dock", "waTeam", "modWa"];
-  const chips = [...document.querySelectorAll(".chip")];
   const menuBtn = document.getElementById("menuBtn");
   const top = document.querySelector(".top");
-  let intent = "marcar uma visita para conhecer a academia";
+  const chips = [...document.querySelectorAll(".chip")];
+  let intent = VISIT;
   let toastTimer = 0;
-
-  const mods = {
-    musculacao: {
-      title: "Musculação",
-      text: "Treino de força com acompanhamento no piso. Peça avaliação e montagem de treino na visita.",
-      img: "assets/photos/floor.jpg",
-      intent: "saber da musculação e marcar avaliação",
-    },
-    fitdance: {
-      title: "Fit Dance",
-      text: "Aula com coreografia e gasto calórico. Confirme o horário da turma no WhatsApp antes de ir.",
-      img: "assets/photos/class.jpg",
-      intent: "saber o horário de Fit Dance",
-    },
-    funcional: {
-      title: "Funcional",
-      text: "Circuito de força, core e condicionamento. Bom pra quem quer treino completo em grupo.",
-      img: "assets/photos/weights.jpg",
-      intent: "saber da aula de funcional",
-    },
-    pilates: {
-      title: "Pilates",
-      text: "Consciência corporal, postura e força. Vaga e horário se confirmam na recepção.",
-      img: "assets/photos/class.jpg",
-      intent: "saber da aula de pilates",
-    },
-    jump: {
-      title: "Jump",
-      text: "Cardio em mini trampolim, aula rápida e intensa. Grade do dia no WhatsApp.",
-      img: "assets/photos/cardio.jpg",
-      intent: "saber da aula de jump",
-    },
-    bike: {
-      title: "Bike",
-      text: "Indoor bike pra perna, glúteo e pulmão. Pergunte as turmas com vaga.",
-      img: "assets/photos/machines.jpg",
-      intent: "saber da aula de bike",
-    },
-  };
 
   function toast(message) {
     toastEl.textContent = message;
     toastEl.classList.add("is-on");
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toastEl.classList.remove("is-on"), 2400);
+    toastTimer = setTimeout(() => toastEl.classList.remove("is-on"), 2800);
   }
 
   function waUrl(custom) {
-    const text = `Olá, Majori Fit Samambaia. Quero ${custom || intent}. Vim pelo site.`;
+    const text = `Olá, Majori Fit Samambaia. Quero ${custom}. Vim pelo site.`;
     return `https://wa.me/${PHONE}?text=${encodeURIComponent(text)}`;
   }
 
   function syncLinks() {
-    ["waTop", "waHero", "waCta", "dock", "waTeam"].forEach((id) => {
+    const fixed = [
+      ["waTop", VISIT],
+      ["waHero", VISIT],
+      ["waAulas", AULAS],
+    ];
+    fixed.forEach(([id, message]) => {
       const el = document.getElementById(id);
-      if (el) el.href = waUrl();
+      if (el) el.href = waUrl(message);
+    });
+    const team = document.getElementById("waTeam");
+    if (team) team.href = `https://wa.me/${PHONE}?text=${encodeURIComponent(VISIT_WA)}`;
+    ["waCta", "dock"].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) el.href = waUrl(intent);
     });
   }
 
-  function onWaClick() {
-    toast("Abrindo WhatsApp com a mensagem pronta.");
-  }
-
-  waIds.forEach((id) => {
-    const el = document.getElementById(id);
-    if (el) el.addEventListener("click", onWaClick);
+  document.querySelectorAll("#waTop, #waHero, #waAulas, #waTeam, #waCta, #waNav, #dock, .foot a[href*='wa.me']").forEach((el) => {
+    el.addEventListener("click", () => {
+      toast("Abrindo WhatsApp com a mensagem pronta. Esta página continua aberta.");
+    });
   });
 
   chips.forEach((chip) => {
@@ -89,31 +60,6 @@
       syncLinks();
       toast("Mensagem pronta: " + chip.textContent.trim());
     });
-  });
-
-  document.querySelectorAll(".mod-tabs button").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const data = mods[btn.dataset.mod];
-      document.querySelectorAll(".mod-tabs button").forEach((b) => {
-        b.classList.toggle("is-on", b === btn);
-        b.setAttribute("aria-selected", b === btn ? "true" : "false");
-      });
-      document.getElementById("modTitle").textContent = data.title;
-      document.getElementById("modText").textContent = data.text;
-      const img = document.getElementById("modImg");
-      img.src = data.img;
-      img.alt = data.title + ", foto ilustrativa";
-      const modWa = document.getElementById("modWa");
-      modWa.dataset.intent = data.intent;
-      modWa.href = waUrl(data.intent);
-      toast(data.title + " selecionada.");
-    });
-  });
-
-  const modWa = document.getElementById("modWa");
-  modWa.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.location.href = waUrl(modWa.dataset.intent || mods.musculacao.intent);
   });
 
   function nowInBrasilia() {
@@ -147,13 +93,16 @@
       label = "Abre às 8h";
       detail = "Fechada · abre hoje às 8h";
     } else if (t.weekday === "Fri") {
-      label = "Abre 8h";
+      label = "Abre sábado 8h";
       detail = "Fechada · sábado às 8h";
-    } else if (t.weekend) {
-      label = "Abre 5h";
+    } else if (t.weekday === "Sat") {
+      label = "Abre domingo 8h";
+      detail = "Fechada · domingo às 8h";
+    } else if (t.weekday === "Sun") {
+      label = "Abre segunda 5h";
       detail = "Fechada · segunda às 5h";
     } else {
-      label = "Abre 5h";
+      label = "Abre às 5h";
       detail = "Fechada · amanhã às 5h";
     }
     document.body.classList.toggle("is-open", open);
@@ -172,27 +121,36 @@
       await navigator.clipboard.writeText(ADDRESS);
       toast("Endereço copiado.");
     } catch {
-      toast("Copie: " + ADDRESS);
+      toast("Não foi possível copiar. Selecione o endereço: " + ADDRESS);
     }
   });
 
-  menuBtn.addEventListener("click", () => {
-    const open = top.classList.toggle("is-open");
+  function setMenu(open) {
+    top.classList.toggle("is-open", open);
+    document.body.classList.toggle("is-nav-open", open);
     menuBtn.setAttribute("aria-expanded", String(open));
-    menuBtn.textContent = open ? "Fechar" : "Menu";
+    menuBtn.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+  }
+
+  menuBtn.addEventListener("click", () => {
+    setMenu(!top.classList.contains("is-open"));
   });
 
-  document.querySelectorAll(".nav a").forEach((a) => {
-    a.addEventListener("click", () => {
-      top.classList.remove("is-open");
-      menuBtn.setAttribute("aria-expanded", "false");
-    });
+  const nav = document.getElementById("nav");
+  nav?.querySelectorAll("a").forEach((a) => {
+    a.addEventListener("click", () => setMenu(false));
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && top.classList.contains("is-open")) {
+      setMenu(false);
+      menuBtn.focus();
+    }
   });
 
   const navMap = [
     ["#treino", 'a[href="#treino"]'],
     ["#aulas", 'a[href="#aulas"]'],
-    ["#estrutura", 'a[href="#estrutura"]'],
     ["#unidade", 'a[href="#unidade"]'],
     ["#falar", 'a[href="#falar"]'],
   ];
@@ -215,16 +173,12 @@
     });
   }
 
-  function heroMotion() {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    if (typeof gsap === "undefined") return;
-    gsap.from(".hero-photo", { scale: 1.06, duration: 1.05, ease: "power2.out" });
-    gsap.from(".hero-inner", { y: 18, duration: 0.6, ease: "power3.out" });
-  }
+  const reel = document.getElementById("reel");
+  reel?.addEventListener("pointerdown", (event) => {
+    if (event.pointerType === "touch") reel.classList.toggle("is-held");
+  });
 
-  chips[0]?.setAttribute("aria-pressed", "true");
   syncLinks();
   status();
   setInterval(status, 30000);
-  heroMotion();
 })();
