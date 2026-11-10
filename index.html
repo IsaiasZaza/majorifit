@@ -42,7 +42,7 @@
   <header class="top">
     <a class="brand" href="#inicio">
       <span class="brand-mark">
-        <img src="assets/Logotipo abstrato laranja e branco.png" width="66" height="44" alt="">
+        <img src="assets/mark.png" width="312" height="264" alt="">
       </span>
       <span>Majori <span class="brand-name">Fit</span></span>
     </a>
@@ -64,7 +64,10 @@
 
   <main>
     <section class="hero" id="inicio">
-      <img class="hero-photo" src="assets/photos/hero.jpg" alt="Foto ilustrativa de treino com pesos. Não mostra o interior desta unidade." width="1600" height="1066" fetchpriority="high" decoding="async">
+      <picture>
+        <source media="(max-width: 900px)" srcset="assets/photos/hero-m.jpg">
+        <img class="hero-photo" src="assets/photos/hero.jpg" alt="Foto ilustrativa de treino com pesos. Não mostra o interior desta unidade." width="1600" height="1066" fetchpriority="high" decoding="async">
+      </picture>
       <div class="hero-shade" aria-hidden="true"></div>
       <div class="hero-inner">
         <h1 class="slogan">Seu próximo nível começa aqui.</h1>
@@ -79,7 +82,7 @@
 
     <section class="split" id="treino">
       <figure>
-        <img src="assets/photos/weights.jpg" alt="Agachamento com barra, foto ilustrativa. Não é o interior desta unidade." width="1200" height="800" decoding="async">
+        <img src="assets/photos/weights.jpg" alt="Agachamento com barra, foto ilustrativa. Não é o interior desta unidade." width="1200" height="800" decoding="async" loading="lazy">
         <figcaption>Foto ilustrativa. Não é o interior desta unidade.</figcaption>
       </figure>
       <div class="split-copy">

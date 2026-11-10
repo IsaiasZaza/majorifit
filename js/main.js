@@ -177,6 +177,12 @@
   reel?.addEventListener("pointerdown", (event) => {
     if (event.pointerType === "touch") reel.classList.toggle("is-held");
   });
+  if (reel && "IntersectionObserver" in window) {
+    const reelWatch = new IntersectionObserver(([entry]) => {
+      reel.classList.toggle("is-off", !entry.isIntersecting);
+    }, { rootMargin: "120px" });
+    reelWatch.observe(reel);
+  }
 
   syncLinks();
   status();
