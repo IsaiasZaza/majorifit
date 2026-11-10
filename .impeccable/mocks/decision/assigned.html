@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Majori Fit — Totem</title>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Signika:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1440px;height:900px;overflow:hidden;background:#000;color:#fff;font-family:Signika,sans-serif}
+  body{display:grid;grid-template-columns:92px 1fr;height:900px}
+  nav{background:#000;border-right:3px solid #C8C8C8;display:flex;flex-direction:column;padding:18px 10px;gap:22px}
+  nav img{width:56px;height:56px}
+  nav a{color:#fff;text-decoration:none;writing-mode:vertical-rl;transform:rotate(180deg);font-size:13px;letter-spacing:.12em}
+  nav a.on{color:#FF4A00}
+  main{display:grid;grid-template-rows:88px 1fr 160px 120px;height:900px}
+  .p{border-bottom:3px solid #C8C8C8;padding:0 48px;display:flex;align-items:center;justify-content:space-between}
+  .brand{font-family:"Big Shoulders Display",sans-serif;font-size:64px;font-weight:800;letter-spacing:.02em}
+  .brand span{color:#FF4A00}
+  .loc{font-size:18px}
+  .hero{padding:36px 48px 20px;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:end}
+  h1{font-family:"Big Shoulders Display",sans-serif;font-size:168px;line-height:.82;font-weight:800}
+  h1 b{color:#FF4A00;font-weight:800}
+  .copy{font-size:22px;max-width:28ch;line-height:1.25;align-self:center}
+  .hours{display:grid;grid-template-columns:1fr 1fr;background:#FF4A00;color:#000}
+  .hours div{padding:28px 40px;border-right:3px solid #000}
+  .hours strong{display:block;font-family:"Big Shoulders Display",sans-serif;font-size:54px}
+  .cta{display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:#000}
+  .cta p{font-size:20px;max-width:36ch}
+  .cta a{background:#FF4A00;color:#000;text-decoration:none;font-family:"Big Shoulders Display",sans-serif;font-size:36px;padding:18px 36px;font-weight:800}
+</style>
+</head>
+<body>
+<nav>
+  <img src="../../../assets/logo.png" alt="Majori Fit">
+  <a class="on" href="#hoje">Hoje</a>
+  <a href="#horarios">Horarios</a>
+  <a href="#onde">Onde</a>
+</nav>
+<main>
+  <div class="p"><div class="brand">MAJORI<span>FIT</span></div><div class="loc">QS 429 · Conj. A · Lote 03 · Samambaia Norte</div></div>
+  <div class="hero">
+    <h1>ABRE<br><b>5H</b></h1>
+    <p class="copy">Academia de bairro em Samambaia. Segunda a sexta das cinco da manha as onze da noite. Fale no WhatsApp e venha treinar.</p>
+  </div>
+  <div class="hours">
+    <div>Seg a sex<strong>5:00 — 23:00</strong></div>
+    <div>Sab e dom<strong>8:00 — 14:00</strong></div>
+  </div>
+  <div class="cta">
+    <p>Matricula e visita pelo WhatsApp (61) 9506-8117</p>
+    <a href="https://wa.me/556195068117">Fale agora</a>
+  </div>
+</main>
+</body>
+</html>

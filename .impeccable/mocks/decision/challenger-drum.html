@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Majori Fit — Ritmo</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Archivo+Narrow:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1440px;height:900px;overflow:hidden;background:#0E0E0E;color:#F5F5F5;font-family:"Archivo Narrow",sans-serif}
+  body{padding:28px 36px}
+  .deck{height:844px;background:#1A1A1A;border:2px solid #3A3A3A;border-radius:18px;padding:28px 32px;display:flex;flex-direction:column}
+  .head{display:flex;justify-content:space-between;align-items:flex-start}
+  .head img{width:48px}
+  .readout{font-family:"Share Tech Mono",monospace;background:#2A0A00;color:#FF4A00;padding:10px 18px;font-size:28px;letter-spacing:.12em;border:1px solid #FF4A00}
+  h1{font-size:72px;margin-top:18px;letter-spacing:.04em}
+  h1 span{color:#FF4A00}
+  p.sub{font-size:20px;max-width:42ch;margin-top:8px}
+  .label{font-family:"Share Tech Mono",monospace;font-size:12px;letter-spacing:.2em;margin:36px 0 10px;color:#AAA}
+  .steps{display:grid;grid-template-columns:repeat(16,1fr);gap:8px}
+  .k{height:88px;background:#2A2A2A;border:none;color:#fff;font-family:"Share Tech Mono",monospace;font-size:13px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:8px}
+  .k.on{background:#FF4A00;color:#000}
+  .k.now{outline:2px solid #FFC107;outline-offset:2px}
+  .banks{display:flex;gap:10px;margin-top:22px}
+  .banks span{border:1px solid #555;padding:8px 14px;font-size:14px}
+  .banks .go{background:#FF4A00;color:#000;border-color:#FF4A00;text-decoration:none;padding:12px 28px;font-size:22px;font-weight:700}
+  .foot{margin-top:auto;display:flex;justify-content:space-between;font-size:16px;border-top:1px solid #333;padding-top:16px}
+</style>
+</head>
+<body>
+<div class="deck">
+  <div class="head">
+    <img src="../../../assets/logo.png" alt="Majori Fit">
+    <div class="readout">ABERTO · 5:00–23:00</div>
+  </div>
+  <h1>MAJORI <span>FIT</span></h1>
+  <p class="sub">QS 429, Samambaia Norte. O padrao da semana esta armado. A luz amarela e agora. RUN manda mensagem no WhatsApp.</p>
+  <div class="label">PASSOS · HORARIO DE FUNCIONAMENTO</div>
+  <div class="steps">
+    <div class="k on">5</div><div class="k on">6</div><div class="k on now">7</div><div class="k on">8</div>
+    <div class="k on">9</div><div class="k on">10</div><div class="k on">11</div><div class="k on">12</div>
+    <div class="k on">13</div><div class="k on">14</div><div class="k on">15</div><div class="k on">16</div>
+    <div class="k on">17</div><div class="k on">18</div><div class="k on">19</div><div class="k on">20</div>
+  </div>
+  <div class="banks">
+    <span>SEG–SEX 5–23</span><span>SAB–DOM 8–14</span>
+    <a class="go" href="https://wa.me/556195068117">RUN · FALE AGORA</a>
+  </div>
+  <div class="foot"><span>QS 429 Conj. A Lote 03</span><span>(61) 9506-8117</span></div>
+</div>
+</body>
+</html>
